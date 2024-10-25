@@ -4,34 +4,33 @@
     <meta charset="UTF-8">
     <title>우편번호 검색</title>
 
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>	
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
 	var width = 500;  
 	var height = 600; 
-	    
-	    function DaumPostcode() {
-            new daum.Postcode({
+
+    function DaumPostcode() {    
+        new daum.Postcode({
 	        width: width, 
-	        height: height
-		    
-	  	        oncomplete: function (data) {
-                            var postcode = data.zonecode;
-                            var addr = '';
-                            var extraAddr = ''; 
+	        height: height,
 
-		            if (data.userSelectedType === 'R') { 
-						addr = data.roadAddress;
-		    		} else {
-						addr = data.jibunAddress;
-            		}
+  	        oncomplete: function (data) {
+                var postcode = data.zonecode;
+                var addr = '';
 
-                    window.location = "myurl://" + postcode + '|' + addr;
-  	      		}
-	}).open({
+		        if (data.userSelectedType === 'R') { 
+			        addr = data.roadAddress;
+		        } else {
+			        addr = data.jibunAddress;
+                }
+
+                console.log("myurl://" + postcode + '|' + addr);
+  	        }
+	    }).open({
 	           left: (window.screen.width / 2) - (width / 2),
 	           top: (window.screen.height / 2) - (height / 2)
                     });
-		}
+    }
     </script>
 </head>
 
