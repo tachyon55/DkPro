@@ -12,8 +12,14 @@
 	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>	
     <script>
+	var width = 500;  
+	var height = 600; 
+	    
 	    function DaumPostcode() {
             new daum.Postcode({
+	        width: width, 
+	        height: height
+		    
 	  	        oncomplete: function (data) {
                             var postcode = data.zonecode;
                             var addr = '';
@@ -31,7 +37,10 @@
                     document.getElementById("sample6_detailAddress").focus();
 
   	      		}
-			}).open();
+	}).open({
+	           left: (window.screen.width / 2) - (width / 2),
+	           top: (window.screen.height / 2) - (height / 2)
+                    });
 		}
     </script>
 </head>
