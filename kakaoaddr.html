@@ -9,28 +9,33 @@
 	var width = 500;  
 	var height = 600; 
 
-    function DaumPostcode() {    
-        new daum.Postcode({
+            new daum.Postcode({
 	        width: width, 
 	        height: height,
 
   	        oncomplete: function (data) {
-                var postcode = data.zonecode;
-                var addr = '';
+                            var postcode = data.zonecode;
+                            var addr = '';
 
-		        if (data.userSelectedType === 'R') { 
-			        addr = data.roadAddress;
-		        } else {
-			        addr = data.jibunAddress;
-                }
+		    if (data.userSelectedType === 'R') { 
+			addr = data.roadAddress;
+		    } else {
+			addr = data.jibunAddress;
+                            }
 
-                console.log("myurl://" + postcode + '|' + addr);
-  	        }
-	    }).open({
+                    console.log("myurl://" + postcode + '|' + addr);
+  	         },
+
+    		onclose: function(state) {
+        		if(state === 'FORCE_CLOSE'){
+                            console.log('Close');
+        		} else if(state === 'COMPLETE_CLOSE'){
+        		}
+		}
+	}).open({
 	           left: (window.screen.width / 2) - (width / 2),
 	           top: (window.screen.height / 2) - (height / 2)
                     });
-    }
     </script>
 </head>
 
